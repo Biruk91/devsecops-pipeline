@@ -5,7 +5,7 @@ describe("API Endpoints Test Suite", () => {
   describe("GET /api/health", () => {
     it("should return 200 OK with UP status", async () => {
       const res = await request(app).get("/api/health");
-      expect(res.statusCode).toBe(500);
+      expect(res.statusCode).toBe(200);
       expect(res.body).toHaveProperty("status", "UP");
       expect(res.body).toHaveProperty("uptime");
       expect(res.body).toHaveProperty("timestamp");
