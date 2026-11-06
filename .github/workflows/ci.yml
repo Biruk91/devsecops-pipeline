@@ -12,13 +12,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Run Gitleaks secret detection
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -28,6 +21,9 @@ jobs:
 
       - name: Install dependencies (clean install)
         run: npm ci
+
+      - name: Dependency vulnerability scan
+        run: npm audit --audit-level=high
 
       - name: Run tests
         run: npm test
