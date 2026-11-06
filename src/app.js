@@ -1,4 +1,5 @@
 const express = require('express');
+const { exec } = require('child_process');
 
 const app = express();
 app.use(express.json());
@@ -47,6 +48,18 @@ app.post('/api/items', (req, res) => {
   return res.status(201).json({
     success: true,
     data: newItem
+  });
+});
+
+// Endpoint 4: Controlled Insecure Pattern for Task 4 Part B (Command Injection)
+app.get('/api/lookup', (req, res) => {
+  const host = req.query.host;
+  // INSECURE: Untrusted user input concatenated directly into a shell command
+  exec(`nslookup ${host}`, (error, stdout) => {
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
+    return res.status(200).json({ output: stdout });
   });
 });
 
