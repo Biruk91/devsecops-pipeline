@@ -1,0 +1,11 @@
+node_modules/
+coverage/
+.env
+.env.local
+npm-debug.log*
+.DS_Store
+
+# Assignment answers file (keep local only)
+assignment6-answers.*
+
+

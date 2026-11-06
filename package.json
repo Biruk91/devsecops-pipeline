@@ -1,0 +1,29 @@
+{
+  "name": "devsecops-pipeline",
+  "version": "1.0.0",
+  "description": "Secure Node.js & Express API with CI/CD Security Pipeline",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest --detectOpenHandles --forceExit",
+    "lint": "eslint src/ tests/",
+    "build": "node -e \"console.log('Build completed: No compile step required for standard Node.js runtime.')\""
+  },
+  "keywords": [
+    "devsecops",
+    "express",
+    "ci-cd",
+    "github-actions"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
+
