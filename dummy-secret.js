@@ -1,2 +1,2 @@
-// Test fake secret for assignment 6 push protection demo
-const fakeApiKey = "ghp_MockSecretTokenForAssignmentTestingOnly0000000000";
+// Test fake secret with exact GitHub PAT syntax (ghp_ + 36 alphanumeric characters)
+const fakeApiKey = "ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
