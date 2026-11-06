@@ -1,4 +1,5 @@
 const express = require('express');
+const dns = require('dns');
 
 const app = express();
 app.use(express.json());
@@ -50,5 +51,22 @@ app.post('/api/items', (req, res) => {
   });
 });
 
-module.exports = app;
+// Endpoint 4: Remediated Network Lookup (Task 4 Part B SAST Fix)
+// SECURE: Strict input validation and safe native API (dns.lookup), no shell execution
+app.get('/api/lookup', (req, res) => {
+  const host = req.query.host;
+  if (!host || typeof host !== 'string' || !/^[a-zA-Z0-9.-]+$/.test(host)) {
+    return res.status(400).json({
+      error: 'Invalid hostname format. Only alphanumeric characters, dots, and hyphens are permitted.'
+    });
+  }
 
+  dns.lookup(host, (err, address) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    return res.status(200).json({ host, address });
+  });
+});
+
+module.exports = app;
